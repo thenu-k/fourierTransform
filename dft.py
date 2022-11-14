@@ -47,7 +47,7 @@ while(outerCount < numSamples):
 #Extracting Amplitude Information
 ampCount = 0
 amplitudes = []
-while(ampCount<numSamples):
+while(ampCount<numSamples/2+1):
     amplitudes.append((math.pow(  (math.pow(realSums[ampCount], 2) + math.pow(imaginarySums[ampCount], 2))  ,0.5))/numSamples  )
     ampCount+= 1
 
@@ -56,7 +56,7 @@ frequencyResolution = samplingRate / numSamples
 xAxisTransform = []
 axisSum = 0
 axisCount = 0
-while(axisCount< numSamples):
+while(axisCount< numSamples/2 +1):
     xAxisTransform.append(axisSum)
     axisSum += frequencyResolution
     axisCount += 1 
