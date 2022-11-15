@@ -1,5 +1,6 @@
 # This programme calculate and visualizes the DFT of a set of frequencies. 
 import math 
+import cmath
 import matplotlib.pyplot as plt
 import csv 
 import easygui
@@ -23,7 +24,7 @@ if pathCorrect:
     numSamples = len(samples)
     samplingRate = len(samples)
 
-    # Calculating the real coefficients
+    # Calculating the real and imaginary coefficients
     outerCount = 0
     realSums = []
     imaginarySums = []
@@ -42,10 +43,15 @@ if pathCorrect:
         k += 1
         outerCount += 1
 
-    #Extracting Amplitude Information
+    #Extracting Amplitude and phase Information
     ampCount = 0
     amplitudes = []
+    phaseList = []
     while(ampCount<numSamples/2+1):
+        i = 0 + 1j
+        cnum = realSums[ampCount] + imaginarySums[ampCount]*i
+        phase = cmath.phase(cnum)
+        phaseList.append(phase*(180/math.pi))
         amplitudes.append((math.pow(  (math.pow(realSums[ampCount], 2) + math.pow(imaginarySums[ampCount], 2))  ,0.5))/numSamples  )
         ampCount+= 1
 
@@ -71,11 +77,14 @@ if pathCorrect:
 
     # Visualisation
 
-    fig, axis = plt.subplots(2)
+    fig, axis = plt.subplots(3)
     axis[0].plot(xAxisInit, samples, marker='o')
     axis[0].set_ylabel('Amplitude (m)')
     axis[0].set_xlabel('Time (s)')
     axis[1].plot(xAxisTransform, amplitudes, marker='o')
     axis[1].set_ylabel('Intensity')
     axis[1].set_xlabel('Frequency (Hz)')
+    axis[2].plot(xAxisTransform, phaseList, marker='o')
+    axis[2].set_ylabel('Phase (deg)')
+    axis[2].set_xlabel('Frequency (Hz)')
     plt.show()
