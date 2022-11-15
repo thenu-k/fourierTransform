@@ -26,29 +26,18 @@ if pathCorrect:
     # Calculating the real coefficients
     outerCount = 0
     realSums = []
-    k = 0
-    while(outerCount < numSamples):
-        #For Each k
-        realSum = 0
-        innerCount = 0
-        while(innerCount<numSamples):
-            realSum += samples[innerCount] * math.cos((2 * math.pi * innerCount * k)/numSamples)
-            innerCount += 1
-        realSums.append(realSum)
-        k += 1
-        outerCount += 1
-
-    # Calculating the imaginary coefficients
-    outerCount = 0
     imaginarySums = []
     k = 0
     while(outerCount < numSamples):
         #For Each k
+        realSum = 0
         imaginarySum = 0
         innerCount = 0
         while(innerCount<numSamples):
+            realSum += samples[innerCount] * math.cos((2 * math.pi * innerCount * k)/numSamples)
             imaginarySum +=  -samples[innerCount] * math.sin((2 * math.pi * innerCount * k)/numSamples)
             innerCount += 1
+        realSums.append(realSum)
         imaginarySums.append(imaginarySum)
         k += 1
         outerCount += 1
