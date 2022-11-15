@@ -72,21 +72,12 @@ while(axisCount< numSamples):
 
 
 # Visualisation
-# f1 = plt.figure(1)
-# plt.plot(xAxisTransform, amplitudes, marker='o')
-# plt.xlabel('Frequency (Hz)')
-# plt.ylabel('Magnitude')
-# f2 = plt.figure(2)
-# plt.plot(xAxisInit, samples, marker='x')
-# plt.xlabel('Time (s)')
-# plt.ylabel('Amplitude')
-# plt.show()
 
 fig, axis = plt.subplots(2)
 axis[0].plot(xAxisInit, samples, marker='o')
-axis[0].set_ylabel('Amplitude')
-axis[0].set_xlabel('Time')
+axis[0].set_ylabel('Amplitude (m)')
+axis[0].set_xlabel('Time (s)')
 axis[1].plot(xAxisTransform, amplitudes, marker='o')
-axis[1].set_ylabel('Magnitude')
-axis[1].set_xlabel('Frequency')
+axis[1].set_ylabel('Intensity')
+axis[1].set_xlabel('Frequency (Hz)')
 plt.show()
